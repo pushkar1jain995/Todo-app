@@ -17,7 +17,13 @@ export default function Home() {
     e.preventDefault();
     if (!newTodo.trim()) return;
     
-    setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
+    console.log("Adding todo:", newTodo);
+    
+    setTodos(prevTodos => [...prevTodos, { 
+      id: Date.now(), 
+      text: newTodo, 
+      completed: false 
+    }]);
     setNewTodo("");
   };
 
@@ -133,9 +139,11 @@ export default function Home() {
                     </>
                   )}
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      );
-    }
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
