@@ -10,7 +10,7 @@ export default function Home() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
 
-  const ad  const [editingId, setEditingId] = useState(null);
+  const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");
 
   const addTodo = (e) => {
@@ -132,9 +132,9 @@ export default function Home() {
                       </div>
                     </>
                   )}
-tent>
-        </Card>
-      </div>
-    </div>
-  );
-}
+                </div>
+              </Card>
+            </div>
+          </div>
+        );
+      }
