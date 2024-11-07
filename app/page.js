@@ -133,8 +133,9 @@ export default function Home() {
                     </>
                   )}
                 </div>
-              </Card>
-            </div>
-          </div>
-        );
-      }
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      );
+    }
