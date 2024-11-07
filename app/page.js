@@ -9,7 +9,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 export default function Home() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
-  const [editingId, setEditingId] = useState(null);
+
+  const ad  const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");
 
   const addTodo = (e) => {
@@ -29,7 +30,7 @@ export default function Home() {
   };
 
   const deleteTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+   etTodos(todos.filter((todo) => todo.id !== id));
   };
 
   const startEditing = (todo) => {
@@ -131,10 +132,7 @@ export default function Home() {
                       </div>
                     </>
                   )}
-                </div>
-              ))}
-            </div>
-          </CardContent>
+tent>
         </Card>
       </div>
     </div>
