@@ -30,7 +30,7 @@ export default function Home() {
   };
 
   const deleteTodo = (id) => {
-   etTodos(todos.filter((todo) => todo.id !== id));
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   const startEditing = (todo) => {
