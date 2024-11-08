@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TodoProvider } from "@/context/TodoContext";
 import { TodoForm } from "@/components/todo/TodoForm";
 import { TodoList } from "@/components/todo/TodoList";
+import { TodoSort } from "@/components/todo/TodoSort";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <TodoForm />
+              <TodoSort />
               <TodoList />
             </CardContent>
           </Card>
