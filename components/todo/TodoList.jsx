@@ -3,7 +3,7 @@
 import { TodoItem } from "./TodoItem";
 import { useTodos } from "@/hooks/useTodos";
 
-export function TodoList() {
+export default function TodoList() {
   const { todos, toggleTodo, deleteTodo, updateTodo } = useTodos();
 
   return (

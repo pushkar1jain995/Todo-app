@@ -8,7 +8,7 @@ import { CATEGORIES } from "@/lib/constants/categories";
 import { PRIORITIES } from "@/lib/constants/priorities";
 import { useTodos } from "@/hooks/useTodos";
 
-export function TodoForm() {
+export default function TodoForm() {
   const { addTodo } = useTodos();
   const [newTodo, setNewTodo] = useState("");
   const [newTodoCategory, setNewTodoCategory] = useState(CATEGORIES[0].name);

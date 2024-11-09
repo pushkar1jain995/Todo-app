@@ -3,7 +3,7 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useTodos } from "@/hooks/useTodos";
 
-export function TodoSort() {
+export default function TodoSort() {
   const { sortBy, setSortBy } = useTodos();
 
   return (
