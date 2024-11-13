@@ -2,22 +2,31 @@
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useTodos } from "@/hooks/useTodos";
+import { IconSort, IconCalendar, IconFlag } from "@tabler/icons-react";
 
 export default function TodoSort() {
   const { sortBy, setSortBy } = useTodos();
 
   return (
-    <div className="flex justify-between mb-4">
-      <Select 
-        value={sortBy} 
-        onValueChange={setSortBy}
-      >
-        <SelectTrigger className="w-[120px]">
+    <div className="flex justify-between items-center mb-6 px-1">
+      <Select value={sortBy} onValueChange={setSortBy}>
+        <SelectTrigger className="w-[140px] bg-white">
+          <IconSort className="w-4 h-4 mr-2" />
           <SelectValue placeholder="Sort by" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="date">Date</SelectItem>
-          <SelectItem value="priority">Priority</SelectItem>
+          <SelectItem value="date">
+            <div className="flex items-center">
+              <IconCalendar className="w-4 h-4 mr-2" />
+              Date
+            </div>
+          </SelectItem>
+          <SelectItem value="priority">
+            <div className="flex items-center">
+              <IconFlag className="w-4 h-4 mr-2" />
+              Priority
+            </div>
+          </SelectItem>
         </SelectContent>
       </Select>
     </div>
