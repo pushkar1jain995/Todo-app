@@ -32,7 +32,7 @@ export default function TodoForm() {
 
   return (
     <div className="max-w-2xl mx-auto mb-6">
-      <form onSubmit={handleSubmit} className="flex gap-2 bg-white shadow-sm rounded-xl p-2 border">
+      <form onSubmit={handleSubmit} className="flex gap-3 bg-white rounded-xl p-3 border shadow-sm hover:shadow-md transition-shadow">
         <Input
           type="text"
           value={newTodo}
@@ -41,7 +41,7 @@ export default function TodoForm() {
           className="flex-1 border-none focus:ring-2 focus:ring-blue-500/50"
         />
         <Select value={newTodoCategory} onValueChange={setNewTodoCategory}>
-          <SelectTrigger className="w-[120px] border-none">
+          <SelectTrigger className="w-[130px] bg-gray-50">
             <SelectValue placeholder="Category" />
           </SelectTrigger>
           <SelectContent>
@@ -53,7 +53,7 @@ export default function TodoForm() {
           </SelectContent>
         </Select>
         <Select value={newTodoPriority} onValueChange={setNewTodoPriority}>
-          <SelectTrigger className="w-[100px] border-none">
+          <SelectTrigger className="w-[110px] bg-gray-50">
             <SelectValue placeholder="Priority" />
           </SelectTrigger>
           <SelectContent>
@@ -64,7 +64,7 @@ export default function TodoForm() {
             ))}
           </SelectContent>
         </Select>
-        <Button type="submit" size="icon" className="rounded-full">
+        <Button type="submit" size="icon" className="rounded-full bg-blue-600 hover:bg-blue-700">
           <PlusIcon className="h-5 w-5" />
         </Button>
       </form>

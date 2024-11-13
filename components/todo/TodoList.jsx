@@ -13,14 +13,14 @@ export default function TodoList() {
         {todos.map((todo) => (
           <motion.div
             key={todo.id}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
             className={`
-              p-4 border rounded-xl shadow-sm 
-              ${todo.priority === 'High' ? 'border-red-500 border-2 bg-red-50/50' : 'border-gray-200'}
-              ${todo.completed ? 'opacity-60' : ''}
+              p-4 border rounded-xl shadow-sm hover:shadow-md transition-shadow
+              ${todo.priority === 'High' ? 'border-red-500/50 bg-red-50/30' : 'border-gray-200'}
+              ${todo.completed ? 'opacity-75' : ''}
             `}
           >
             <TodoItem
