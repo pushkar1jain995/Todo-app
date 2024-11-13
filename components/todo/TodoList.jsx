@@ -2,27 +2,41 @@
 
 import { TodoItem } from "./TodoItem";
 import { useTodos } from "@/hooks/useTodos";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function TodoList() {
   const { todos, toggleTodo, deleteTodo, updateTodo } = useTodos();
 
   return (
-    <div className="space-y-2">
-      {todos.map((todo) => (
-        <div
-          key={todo.id}
-          className={`p-2 border rounded-lg ${
-            todo.priority === 'High' ? 'border-red-500 border-2' : ''
-          }`}
-        >
-          <TodoItem
-            todo={todo}
-            onToggle={toggleTodo}
-            onDelete={deleteTodo}
-            onUpdate={updateTodo}
-          />
+    <div className="space-y-4 max-w-2xl mx-auto">
+      <AnimatePresence>
+        {todos.map((todo) => (
+          <motion.div
+            key={todo.id}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className={`
+              p-4 border rounded-xl shadow-sm 
+              ${todo.priority === 'High' ? 'border-red-500 border-2 bg-red-50/50' : 'border-gray-200'}
+              ${todo.completed ? 'opacity-60' : ''}
+            `}
+          >
+            <TodoItem
+              todo={todo}
+              onToggle={toggleTodo}
+              onDelete={deleteTodo}
+              onUpdate={updateTodo}
+            />
+          </motion.div>
+        ))}
+      </AnimatePresence>
+      {todos.length === 0 && (
+        <div className="text-center text-gray-500 italic py-8">
+          No todos yet. Start by adding a new task!
         </div>
-      ))}
+      )}
     </div>
   );
 } 

@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { CATEGORIES } from "@/lib/constants/categories";
 import { PRIORITIES } from "@/lib/constants/priorities";
 import { useTodos } from "@/hooks/useTodos";
+import { PlusIcon } from "lucide-react";
 
 export default function TodoForm() {
   const { addTodo } = useTodos();
@@ -30,39 +31,43 @@ export default function TodoForm() {
   };
 
   return (
-    <div className="flex gap-2 mb-4">
-      <Input
-        type="text"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
-        placeholder="Add a new todo..."
-        className="flex-1"
-      />
-      <Select value={newTodoCategory} onValueChange={setNewTodoCategory}>
-        <SelectTrigger className="w-[120px]">
-          <SelectValue placeholder="Category" />
-        </SelectTrigger>
-        <SelectContent>
-          {CATEGORIES.map(cat => (
-            <SelectItem key={cat.name} value={cat.name}>
-              {cat.name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      <Select value={newTodoPriority} onValueChange={setNewTodoPriority}>
-        <SelectTrigger className="w-[100px]">
-          <SelectValue placeholder="Priority" />
-        </SelectTrigger>
-        <SelectContent>
-          {PRIORITIES.map(priority => (
-            <SelectItem key={priority.name} value={priority.name}>
-              {priority.name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      <Button onClick={handleSubmit}>Add</Button>
+    <div className="max-w-2xl mx-auto mb-6">
+      <form onSubmit={handleSubmit} className="flex gap-2 bg-white shadow-sm rounded-xl p-2 border">
+        <Input
+          type="text"
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          placeholder="Add a new todo..."
+          className="flex-1 border-none focus:ring-2 focus:ring-blue-500/50"
+        />
+        <Select value={newTodoCategory} onValueChange={setNewTodoCategory}>
+          <SelectTrigger className="w-[120px] border-none">
+            <SelectValue placeholder="Category" />
+          </SelectTrigger>
+          <SelectContent>
+            {CATEGORIES.map(cat => (
+              <SelectItem key={cat.name} value={cat.name}>
+                {cat.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <Select value={newTodoPriority} onValueChange={setNewTodoPriority}>
+          <SelectTrigger className="w-[100px] border-none">
+            <SelectValue placeholder="Priority" />
+          </SelectTrigger>
+          <SelectContent>
+            {PRIORITIES.map(priority => (
+              <SelectItem key={priority.name} value={priority.name}>
+                {priority.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <Button type="submit" size="icon" className="rounded-full">
+          <PlusIcon className="h-5 w-5" />
+        </Button>
+      </form>
     </div>
   );
 } 
