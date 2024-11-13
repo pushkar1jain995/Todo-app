@@ -4,7 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useTodos } from "@/hooks/useTodos";
 import { IconSort, IconCalendar, IconFlag } from "@tabler/icons-react";
 
-export default function TodoSort() {
+export function TodoSort() {
   const { sortBy, setSortBy } = useTodos();
 
   return (
