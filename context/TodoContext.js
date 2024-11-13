@@ -1,30 +1,14 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext } from 'react';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 const TodoContext = createContext();
 
 export function TodoProvider({ children }) {
-  const [todos, setTodos] = useState(() => {
-    try {
-      const savedTodos = localStorage.getItem('todos');
-      return savedTodos ? JSON.parse(savedTodos) : [];
-    } catch (error) {
-      console.error("Error loading todos from localStorage:", error);
-      return [];
-    }
-  });
-  const [filter, setFilter] = useState('All');
-  const [sortBy, setSortBy] = useState('date');
-
-  // Save todos to localStorage whenever they change
-  useEffect(() => {
-    try {
-      localStorage.setItem('todos', JSON.stringify(todos));
-    } catch (error) {
-      console.error("Error saving todos to localStorage:", error);
-    }
-  }, [todos]);
+  const [todos, setTodos] = useLocalStorage('todos', []);
+  const [filter, setFilter] = useLocalStorage('filter', 'All');
+  const [sortBy, setSortBy] = useLocalStorage('sortBy', 'date');
 
   console.log("TodoContext - Current Todos:", todos);
 
@@ -34,7 +18,7 @@ export function TodoProvider({ children }) {
       ...newTodo,
       id: Date.now(),
       completed: false,
-      createdAt: new Date()
+      createdAt: new Date().toISOString()
     };
     setTodos(prevTodos => [...prevTodos, todoToAdd]);
   };
