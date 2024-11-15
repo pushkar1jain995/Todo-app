@@ -4,9 +4,17 @@ import dynamic from 'next/dynamic';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TodoProvider } from "@/context/TodoContext";
 
-const TodoForm = dynamic(() => import("@/components/todo/TodoForm").then(mod => mod.default), { ssr: false });
-const TodoList = dynamic(() => import("@/components/todo/TodoList").then(mod => mod.default), { ssr: false });
-const TodoSort = dynamic(() => import("@/components/todo/TodoSort").then(mod => mod.default), { ssr: false });
+const TodoForm = dynamic(() => import("../components/todo/TodoForm"), {
+  ssr: false,
+});
+
+const TodoList = dynamic(() => import("../components/todo/TodoList"), {
+  ssr: false,
+});
+
+const TodoSort = dynamic(() => import("../components/todo/TodoSort"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (

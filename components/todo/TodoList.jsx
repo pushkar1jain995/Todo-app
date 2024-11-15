@@ -4,7 +4,7 @@ import { TodoItem } from "./TodoItem";
 import { useTodos } from "@/hooks/useTodos";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function TodoList() {
+const TodoList = () => {
   const { todos, toggleTodo, deleteTodo, updateTodo } = useTodos();
 
   return (
@@ -39,4 +39,6 @@ export default function TodoList() {
       )}
     </div>
   );
-} 
+};
+
+export default TodoList; 

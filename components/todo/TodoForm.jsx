@@ -9,7 +9,7 @@ import { PRIORITIES } from "@/lib/constants/priorities";
 import { useTodos } from "@/hooks/useTodos";
 import { PlusIcon } from "lucide-react";
 
-export default function TodoForm() {
+const TodoForm = () => {
   const { addTodo } = useTodos();
   const [newTodo, setNewTodo] = useState("");
   const [newTodoCategory, setNewTodoCategory] = useState(CATEGORIES[0].name);
@@ -70,4 +70,6 @@ export default function TodoForm() {
       </form>
     </div>
   );
-} 
+};
+
+export default TodoForm; 
