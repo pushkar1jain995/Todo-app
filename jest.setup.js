@@ -11,6 +11,8 @@ global.localStorage = localStorageMock;
 
 // Custom console error handler to reduce noise
 const originalError = console.error;
+const originalLog = console.log;
+
 console.error = (...args) => {
   // Filter out specific React error messages we expect during tests
   if (args[0]?.includes('Error: Uncaught [Error: useTodoContext must be used within a TodoProvider]')) {
@@ -30,6 +32,17 @@ console.error = (...args) => {
   }
   // Log other unexpected errors
   originalError.call(console, ...args);
+};
+
+// Suppress TodoContext logs during tests
+console.log = (...args) => {
+  if (args[0]?.includes('TodoContext - Current Todos:')) {
+    return;
+  }
+  if (args[0]?.includes('Adding todo:')) {
+    return;
+  }
+  originalLog.call(console, ...args);
 };
 
 // Mock window.matchMedia
