@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import { cleanup } from '@testing-library/react';
 
 // Mock the localStorage
 const localStorageMock = {
@@ -15,33 +16,31 @@ const originalLog = console.log;
 
 console.error = (...args) => {
   // Filter out specific React error messages we expect during tests
-  if (args[0]?.includes('Error: Uncaught [Error: useTodoContext must be used within a TodoProvider]')) {
+  const errorMessage = String(args[0]);
+  
+  if (errorMessage.includes('Error: Uncaught [Error: useTodoContext must be used within a TodoProvider]') ||
+      errorMessage.includes('The above error occurred in the <TestComponent> component') ||
+      errorMessage.includes('Consider adding an error boundary') ||
+      /Warning.*not wrapped in act/.test(errorMessage) ||
+      /Warning.*ReactDOMTestUtils.act/.test(errorMessage) ||
+      errorMessage.includes('React.createPortal')
+  ) {
     return;
   }
-  if (args[0]?.includes('The above error occurred in the <TestComponent> component')) {
-    return;
-  }
-  if (args[0]?.includes('Consider adding an error boundary')) {
-    return;
-  }
-  if (/Warning.*not wrapped in act/.test(args[0])) {
-    return;
-  }
-  if (/Warning.*ReactDOMTestUtils.act/.test(args[0])) {
-    return;
-  }
+  
   // Log other unexpected errors
   originalError.call(console, ...args);
 };
 
 // Suppress TodoContext logs during tests
 console.log = (...args) => {
-  if (args[0]?.includes('TodoContext - Current Todos:')) {
+  const logMessage = String(args[0]);
+  
+  if (logMessage.includes('TodoContext - Current Todos:') ||
+      logMessage.includes('Adding todo:')) {
     return;
   }
-  if (args[0]?.includes('Adding todo:')) {
-    return;
-  }
+  
   originalLog.call(console, ...args);
 };
 
@@ -58,4 +57,18 @@ Object.defineProperty(window, 'matchMedia', {
     removeEventListener: jest.fn(),
     dispatchEvent: jest.fn(),
   })),
-}); 
+});
+
+// Clean up after each test
+afterEach(() => {
+  cleanup();
+  document.body.innerHTML = '';
+});
+
+// Mock ResizeObserver
+global.ResizeObserver = class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};
+  

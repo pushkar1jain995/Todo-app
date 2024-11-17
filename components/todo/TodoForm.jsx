@@ -40,25 +40,41 @@ const TodoForm = () => {
           placeholder="Add a new todo..."
           className="flex-1 border-none focus:ring-2 focus:ring-blue-500/50"
         />
-        <Select value={newTodoCategory} onValueChange={setNewTodoCategory}>
-          <SelectTrigger className="w-[130px] bg-gray-50">
+        <Select 
+          value={newTodoCategory} 
+          onValueChange={setNewTodoCategory}
+          name="category"
+        >
+          <SelectTrigger className="w-[130px] bg-gray-50" aria-label="Category selector">
             <SelectValue placeholder="Category" />
           </SelectTrigger>
           <SelectContent>
             {CATEGORIES.map(cat => (
-              <SelectItem key={cat.name} value={cat.name}>
+              <SelectItem 
+                key={cat.name} 
+                value={cat.name}
+                data-testid={`category-option-${cat.name.toLowerCase()}`}
+              >
                 {cat.name}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
-        <Select value={newTodoPriority} onValueChange={setNewTodoPriority}>
-          <SelectTrigger className="w-[110px] bg-gray-50">
+        <Select 
+          value={newTodoPriority} 
+          onValueChange={setNewTodoPriority}
+          name="priority"
+        >
+          <SelectTrigger className="w-[110px] bg-gray-50" aria-label="Priority selector">
             <SelectValue placeholder="Priority" />
           </SelectTrigger>
           <SelectContent>
             {PRIORITIES.map(priority => (
-              <SelectItem key={priority.name} value={priority.name}>
+              <SelectItem 
+                key={priority.name} 
+                value={priority.name}
+                data-testid={`priority-option-${priority.name.toLowerCase()}`}
+              >
                 {priority.name}
               </SelectItem>
             ))}
