@@ -71,4 +71,67 @@ global.ResizeObserver = class ResizeObserver {
   unobserve() {}
   disconnect() {}
 };
+
+// Enhanced pointer event mocks
+class MockPointerEvent extends Event {
+  constructor(type, props) {
+    super(type, props);
+    this.button = props?.button ?? 0;
+    this.ctrlKey = props?.ctrlKey ?? false;
+    this.pointerType = props?.pointerType ?? 'mouse';
+    this.pointerId = props?.pointerId ?? 1;
+    this.pressure = props?.pressure ?? 0;
+    this.clientX = props?.clientX ?? 0;
+    this.clientY = props?.clientY ?? 0;
+    this.buttons = props?.buttons ?? 0;
+  }
+}
+
+// Mock pointer capture methods
+HTMLElement.prototype.setPointerCapture = jest.fn();
+HTMLElement.prototype.releasePointerCapture = jest.fn();
+HTMLElement.prototype.hasPointerCapture = jest.fn(() => false);
+
+global.PointerEvent = MockPointerEvent;
+
+// Create and manage portal root for Radix UI
+beforeEach(() => {
+  // Remove any existing portal root
+  const existingPortal = document.querySelector('#radix-portal');
+  if (existingPortal) {
+    existingPortal.remove();
+  }
+  
+  // Create fresh portal root
+  const portalRoot = document.createElement('div');
+  portalRoot.setAttribute('id', 'radix-portal');
+  document.body.appendChild(portalRoot);
+});
+
+// Mock scrollIntoView
+Element.prototype.scrollIntoView = jest.fn();
+
+// Enhanced select helper
+global.openSelect = async (element) => {
+  try {
+    // Force the select to open
+    element.setAttribute('data-state', 'open');
+    element.setAttribute('aria-expanded', 'true');
+    
+    // Create and append content container to portal
+    const contentId = element.getAttribute('aria-controls');
+    const content = document.createElement('div');
+    content.setAttribute('id', contentId);
+    content.setAttribute('role', 'listbox');
+    content.setAttribute('data-state', 'open');
+    
+    const portal = document.querySelector('#radix-portal');
+    portal.appendChild(content);
+    
+    return content;
+  } catch (error) {
+    console.error('Error opening select:', error);
+    throw error;
+  }
+};
   

@@ -15,19 +15,32 @@ const TodoForm = () => {
   const [newTodoCategory, setNewTodoCategory] = useState(CATEGORIES[0].name);
   const [newTodoPriority, setNewTodoPriority] = useState(PRIORITIES[2].name);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!newTodo.trim()) return;
-
-    addTodo({
+    console.log('Form submitted with values:', {
       text: newTodo,
       category: newTodoCategory,
-      priority: newTodoPriority,
+      priority: newTodoPriority
     });
+    
+    if (!newTodo.trim()) {
+      console.log('Empty todo, submission cancelled');
+      return;
+    }
 
-    setNewTodo("");
-    setNewTodoCategory(CATEGORIES[0].name);
-    setNewTodoPriority(PRIORITIES[2].name);
+    try {
+      await addTodo({
+        text: newTodo,
+        category: newTodoCategory,
+        priority: newTodoPriority,
+      });
+
+      setNewTodo("");
+      setNewTodoCategory(CATEGORIES[0].name);
+      setNewTodoPriority(PRIORITIES[2].name);
+    } catch (error) {
+      console.error('Error adding todo:', error);
+    }
   };
 
   return (
