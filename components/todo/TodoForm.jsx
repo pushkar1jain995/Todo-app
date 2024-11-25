@@ -45,7 +45,7 @@ const TodoForm = () => {
 
   return (
     <div className="max-w-2xl mx-auto mb-6">
-      <form onSubmit={handleSubmit} className="flex gap-3 bg-white rounded-xl p-3 border shadow-sm hover:shadow-md transition-shadow">
+      <form onSubmit={handleSubmit} data-testid="todo-form" className="flex gap-3 bg-white rounded-xl p-3 border shadow-sm hover:shadow-md transition-shadow">
         <Input
           type="text"
           value={newTodo}

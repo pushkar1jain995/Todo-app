@@ -19,7 +19,7 @@ const TodoSort = dynamic(() => import("../components/todo/TodoSort"), {
 export default function Home() {
   return (
     <TodoProvider>
-      <div className="min-h-screen p-8 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <div data-testid="todo-app" className="min-h-screen p-8 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="max-w-2xl mx-auto">
           <Card className="shadow-lg border-0">
             <CardHeader className="space-y-1 text-center">

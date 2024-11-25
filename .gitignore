@@ -12,6 +12,11 @@ components/ui
 # testing
 /coverage
 
+# playwright
+/playwright-report
+
+# test-results
+/test-results
 # next.js
 /.next/
 /out/
