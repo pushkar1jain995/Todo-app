@@ -24,7 +24,7 @@ export default function Home() {
             <Card className="shadow-lg border-0">
               <CardHeader className="space-y-1 text-center">
                 <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                  Todo App
+                  My Todo App
                 </CardTitle>
                 <p className="text-sm text-muted-foreground">Organize your tasks efficiently</p>
               </CardHeader>
