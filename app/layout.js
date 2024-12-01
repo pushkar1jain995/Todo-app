@@ -17,7 +17,6 @@ const geistMono = localFont({
 export const metadata = {
   title: 'Todo App - Next.js',
   description: 'A beautiful Todo application built with Next.js and Shadcn UI',
-  viewport: 'width=device-width, initial-scale=1',
 }
 
 export default function RootLayout({ children }) {

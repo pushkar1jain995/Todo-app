@@ -3,8 +3,6 @@
 import dynamic from 'next/dynamic';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TodoProvider } from "@/context/TodoContext";
-import ErrorBoundary from "@/components/ErrorBoundary";
-import ErrorFallback from "@/components/ErrorFallback";
 
 const TodoForm = dynamic(() => import("../components/todo/TodoForm"), {
   ssr: false,
@@ -20,7 +18,6 @@ const TodoSort = dynamic(() => import("../components/todo/TodoSort"), {
 
 export default function Home() {
   return (
-    <ErrorBoundary fallback={<ErrorFallback />}>
       <TodoProvider>
         <div data-testid="todo-app" className="min-h-screen p-8 bg-gradient-to-br from-blue-50 to-indigo-50">
           <div className="max-w-2xl mx-auto">
@@ -40,6 +37,5 @@ export default function Home() {
           </div>
         </div>
       </TodoProvider>
-    </ErrorBoundary>
   );
 }
