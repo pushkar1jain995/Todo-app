@@ -7,6 +7,7 @@ const geistSans = localFont({
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -16,6 +17,7 @@ const geistMono = localFont({
 export const metadata = {
   title: 'Todo App - Next.js',
   description: 'A beautiful Todo application built with Next.js and Shadcn UI',
+  viewport: 'width=device-width, initial-scale=1',
 }
 
 export default function RootLayout({ children }) {
@@ -33,3 +35,5 @@ export default function RootLayout({ children }) {
     </html>
   )
 }
+
+
